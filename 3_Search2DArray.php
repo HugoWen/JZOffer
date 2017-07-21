@@ -29,11 +29,9 @@ function search2DArray(array $arr, int $target)
             if ($target === $arr[$i][$j]) {
                 return true;
             } elseif ($target > $arr[$i][$j]) {
-                $limit_row++;
                 break;
             } else {
                 $limit_col--;
-                continue;
             }
         }
     }
@@ -49,6 +47,6 @@ $arr = [
     [6, 8, 11, 15]
 ];
 
-$target = 3;
+$target = 7;
 
-echo search2DArray($arr, $target) ? 'true' : 'false';
+var_export(search2DArray($arr, $target));
