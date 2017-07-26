@@ -23,6 +23,12 @@ function minRevertArray(array $arr)
         }
 
         $mid = (int)(($start + $end) / 2);
+
+        // start end mid 相等，无法继续判断
+        if ($arr[$start] === $arr[$end] && $arr[$start] == $arr[$mid]) {
+            return minArray($arr, $start, $end);
+        }
+
         if ($arr[$mid] >= $arr[$start]) {
             $start = $mid;
         } else {
@@ -33,5 +39,17 @@ function minRevertArray(array $arr)
     return $arr[$start];
 }
 
-$arr = [3, 4, 5, 6, 2, 3];
+function minArray(array $arr, int $start, int $end)
+{
+    $ret = $arr[$start];
+    for ($i = $start + 1; $i <= $end; $i ++) {
+        if ($ret > $arr[$i]) {
+            $ret = $arr[$i];
+        }
+    }
+
+    return $ret;
+}
+
+$arr = [1, 0, 1, 1, 1];
 var_export(minRevertArray($arr));
