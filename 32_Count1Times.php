@@ -13,6 +13,10 @@
 
 function count1Times(int $n)
 {
+    $_count = function (int $len) {
+        return pow(10, $len - 1);
+    };
+
     if ($n < 1) {
         return 0;
     }
@@ -26,20 +30,15 @@ function count1Times(int $n)
     }
 
     if ($first > 1) {
-        $first_count = _count($length);
+        $first_count = $_count($length);
     } else {
-        $first_count = $n % _count($length) + 1;
+        $first_count = $n % $_count($length) + 1;
     }
 
-    $second_count = $first * ($length - 1) * _count($length - 1);
-    $other_count = count1Times($n % _count($length));
+    $second_count = $first * ($length - 1) * $_count($length - 1);
+    $other_count = count1Times($n % $_count($length));
 
     return $first_count + $second_count + $other_count;
-}
-
-function _count(int $len)
-{
-    return pow(10, $len - 1);
 }
 
 var_dump(count1Times(21345));
